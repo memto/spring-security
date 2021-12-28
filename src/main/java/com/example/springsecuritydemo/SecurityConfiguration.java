@@ -21,11 +21,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
@@ -35,5 +30,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "static/css/**", "static/js/**").permitAll()
                 // type of login
                 .and().formLogin();
+    }
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 }
