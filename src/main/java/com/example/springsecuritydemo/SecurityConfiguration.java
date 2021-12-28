@@ -21,14 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-            .dataSource(dataSource)
-            .withDefaultSchema()  // Thanks to spring boot => h2database
-            .withUser(User.withUsername("user")
-                        .password("user")
-                        .roles("USER"))
-            .withUser(User.withUsername("admin")
-                    .password("admin")
-                    .roles("ADMIN"));
+            .dataSource(dataSource);
     }
 
     @Bean
